@@ -22,7 +22,6 @@ async function main() {
 
 main().catch((err) => console.log(err));
 mongoose.set('strictQuery', false);
-
 var app = express();
 
 // view engine setup
