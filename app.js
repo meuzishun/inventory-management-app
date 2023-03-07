@@ -1,22 +1,27 @@
 var createError = require('http-errors');
 var express = require('express');
+const dotenv = require('dotenv').config();
+const mongoDB = process.env.MONGO_DB_URI;
 const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
-const mongoDB =
-  'mongodb+srv://afsmith:my123passWORD@cluster0.vxkbkeq.mongodb.net/?retryWrites=true&w=majority';
-async function main() {
-  await mongoose.connect(mongoDB);
-}
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const categoryRouter = require('./routes/categoryRouter');
 const itemRouter = require('./routes/itemRouter');
+async function main() {
+  try {
+    const conn = await mongoose.connect(mongoDB);
+    console.log(`MongoDB connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
 
 main().catch((err) => console.log(err));
+mongoose.set('strictQuery', false);
 
 var app = express();
 
