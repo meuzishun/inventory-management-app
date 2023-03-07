@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 const dotenv = require('dotenv').config();
-const mongoDB = process.env.MONGO_DB_URI;
 const mongoose = require('mongoose');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -10,9 +9,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const categoryRouter = require('./routes/categoryRouter');
 const itemRouter = require('./routes/itemRouter');
+
 async function main() {
   try {
-    const conn = await mongoose.connect(mongoDB);
+    const conn = await mongoose.connect(process.env.MONGO_DB_URI);
     console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
     console.log(error);
@@ -21,7 +21,9 @@ async function main() {
 }
 
 main().catch((err) => console.log(err));
+
 mongoose.set('strictQuery', false);
+
 var app = express();
 
 // view engine setup
