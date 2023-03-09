@@ -56,6 +56,8 @@ const readItem = asyncHandler(async (req, res) => {
     throw new Error('Item not found');
   }
 
+  await item.populate('category');
+
   res.status(200).json(item);
 });
 
