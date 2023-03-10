@@ -123,9 +123,32 @@ const updateItem = asyncHandler(async (req, res) => {
     throw new Error('Item not found');
   }
 
-  const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+  //* Use this if category is id
+  // const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
+  //   new: true,
+  // });
+
+  //* Use this if category is text
+  const foundCategory = await Category.findOne({ name: category });
+  if (!foundCategory) {
+    res.status(400);
+    throw new Error('Not a pre-existing category');
+  }
+  const categoryId = foundCategory._id.toString();
+
+  const updatedItem = await Item.findByIdAndUpdate(
+    req.params.id,
+    {
+      name,
+      description,
+      category: categoryId,
+      price,
+      quantity,
+    },
+    {
+      new: true,
+    }
+  );
 
   res.status(200).json(updatedItem);
 });
