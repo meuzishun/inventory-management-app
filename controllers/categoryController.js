@@ -3,10 +3,7 @@ const Category = require('../models/category');
 const Item = require('../models/item');
 const { body, validationResult } = require('express-validator');
 
-// @desc    Create category
-// @route   POST /categories
-// @access  Private
-const createCategory = [
+const categoryValidation = [
   body('name')
     .trim()
     .isLength({ min: 1 })
@@ -17,6 +14,13 @@ const createCategory = [
     .isLength({ min: 1 })
     .escape()
     .withMessage('Please include a description.'),
+];
+
+// @desc    Create category
+// @route   POST /categories
+// @access  Private
+const createCategory = [
+  categoryValidation,
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
 
@@ -61,17 +65,15 @@ const readAllCategories = asyncHandler(async (req, res) => {
 // @route   PUT /categories/:id
 // @access  Private
 const updateCategory = [
-  body('name')
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage('Please include a name.'),
-  body('description')
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage('Please include a description.'),
+  categoryValidation,
   asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.status(500).json(errors);
+      return;
+    }
+
     const category = await Category.findById(req.params.id);
 
     //? Is this necessary? 500 is thrown if findById doesn't work...
@@ -95,12 +97,13 @@ const updateCategory = [
 // @access  Private
 const deleteCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
-  const itemsInCategory = await Item.find({ category: req.params.id });
 
   if (!category) {
     res.status(400);
     throw new Error('Category not found');
   }
+
+  const itemsInCategory = await Item.find({ category: req.params.id });
 
   if (itemsInCategory.length !== 0) {
     res.status(500);
