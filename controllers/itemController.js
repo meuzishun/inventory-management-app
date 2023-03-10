@@ -90,8 +90,6 @@ const readAllItems = asyncHandler(async (req, res) => {
 const updateItem = asyncHandler(async (req, res) => {
   const { name, description, category, price, quantity } = req.body;
 
-  //! We are assuming that 'category' is coming in as an id
-
   if (!name) {
     res.status(400);
     throw new Error('Please include a name');
