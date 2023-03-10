@@ -1,30 +1,38 @@
 const asyncHandler = require('express-async-handler');
 const Category = require('../models/category');
 const Item = require('../models/item');
+const { body, validationResult } = require('express-validator');
 
 // @desc    Create category
 // @route   POST /categories
 // @access  Private
-const createCategory = asyncHandler(async (req, res) => {
-  const { name, description } = req.body;
+const createCategory = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Please include a name.'),
+  body('description')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Please include a description.'),
+  asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
 
-  if (!name) {
-    res.status(400);
-    throw new Error('Please include a name');
-  }
+    if (!errors.isEmpty()) {
+      res.status(500).json(errors);
+      return;
+    }
 
-  if (!description) {
-    res.status(400);
-    throw new Error('Please include a description');
-  }
+    const category = await Category.create({
+      name: req.body.name,
+      description: req.body.description,
+    });
 
-  const category = await Category.create({
-    name,
-    description,
-  });
-
-  res.status(200).json(category);
-});
+    res.status(200).json(category);
+  }),
+];
 
 // @desc    Get a single category
 // @route   GET /categories/:id
@@ -52,22 +60,35 @@ const readAllCategories = asyncHandler(async (req, res) => {
 // @desc    Update category
 // @route   PUT /categories/:id
 // @access  Private
-const updateCategory = asyncHandler(async (req, res) => {
-  const category = await Category.findById(req.params.id);
+const updateCategory = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Please include a name.'),
+  body('description')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Please include a description.'),
+  asyncHandler(async (req, res) => {
+    const category = await Category.findById(req.params.id);
 
-  if (!category) {
-    res.status(400);
-    throw new Error('Category not found');
-  }
+    //? Is this necessary? 500 is thrown if findById doesn't work...
+    if (!category) {
+      res.status(400);
+      throw new Error('Category not found');
+    }
 
-  const updatedCategory = await Category.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
+    const updatedCategory = await Category.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
 
-  res.status(200).json(updatedCategory);
-});
+    res.status(200).json(updatedCategory);
+  }),
+];
 
 // @desc    Delete category
 // @route   DELETE /categories/:id
