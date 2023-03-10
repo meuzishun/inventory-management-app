@@ -1,13 +1,12 @@
 const asyncHandler = require('express-async-handler');
 const Item = require('../models/item');
+const Category = require('../models/category');
 
 // @desc    Create item
 // @route   POST /items
 // @access  Private
 const createItem = asyncHandler(async (req, res) => {
   const { name, description, category, price, quantity } = req.body;
-
-  //! We are assuming that 'category' is coming in as an id
 
   if (!name) {
     res.status(400);
@@ -34,10 +33,27 @@ const createItem = asyncHandler(async (req, res) => {
     throw new Error('Please include a quantity');
   }
 
+  //* Use this if category is id
+  // const item = await Item.create({
+  //   name,
+  //   description,
+  //   category,
+  //   price,
+  //   quantity,
+  // });
+
+  //* Use this if category is text
+  const foundCategory = await Category.findOne({ name: category });
+  if (!foundCategory) {
+    res.status(400);
+    throw new Error('Not a pre-existing category');
+  }
+  const categoryId = foundCategory._id.toString();
+
   const item = await Item.create({
     name,
     description,
-    category,
+    category: categoryId,
     price,
     quantity,
   });
@@ -49,14 +65,12 @@ const createItem = asyncHandler(async (req, res) => {
 // @route   GET /items/:id
 // @access  Private
 const readItem = asyncHandler(async (req, res) => {
-  const item = await Item.findById(req.params.id);
+  const item = await Item.findById(req.params.id).populate('category');
 
   if (!item) {
     res.status(400);
     throw new Error('Item not found');
   }
-
-  await item.populate('category');
 
   res.status(200).json(item);
 });
@@ -65,7 +79,7 @@ const readItem = asyncHandler(async (req, res) => {
 // @route   GET /items
 // @access  Private
 const readAllItems = asyncHandler(async (req, res) => {
-  const items = await Item.find();
+  const items = await Item.find().populate('category');
 
   res.status(200).json(items);
 });
