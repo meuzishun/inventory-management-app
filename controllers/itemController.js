@@ -14,6 +14,9 @@ const itemValidation = [
     .isLength({ min: 1 })
     .escape()
     .withMessage('Please include a description.'),
+  //* Change 'category' validation if id
+  // body('category')
+  //   .isMongold(),
   body('category')
     .trim()
     .isLength({ min: 1 })
