@@ -16,6 +16,19 @@ const categoryValidation = [
     .withMessage('Please include a description.'),
 ];
 
+// @desc    Get category form
+// @route   GET /categories/new
+// @route   GET /categories/:id/edit
+// @access  Private
+const categoryForm = asyncHandler(async (req, res) => {
+  if (req.params.id) {
+    const category = await Category.findById(req.params.id);
+    res.status(200).json(category);
+  } else {
+    res.status(200).json({ title: 'create category' });
+  }
+});
+
 // @desc    Create category
 // @route   POST /categories
 // @access  Private
@@ -92,8 +105,18 @@ const updateCategory = [
   }),
 ];
 
+// @desc    Get category delete
+// @route   GET /categories/:id/remove
+// @access  Private
+const deleteCheck = asyncHandler(async (req, res) => {
+  if (req.params.id) {
+    const category = await Category.findById(req.params.id);
+    res.status(200).json(category);
+  }
+});
+
 // @desc    Delete category
-// @route   DELETE /categories/:id
+// @route   DELETE /categories/:id/remove
 // @access  Private
 const deleteCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
@@ -115,9 +138,11 @@ const deleteCategory = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  categoryForm,
   createCategory,
   readCategory,
   readAllCategories,
   updateCategory,
+  deleteCheck,
   deleteCategory,
 };
