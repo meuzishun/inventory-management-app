@@ -62,7 +62,8 @@ const readCategory = asyncHandler(async (req, res) => {
     throw new Error('Category not found');
   }
 
-  res.status(200).json(category);
+  // res.status(200).json(category);
+  res.render('category', { category });
 });
 
 // @desc    Get all categories
@@ -71,7 +72,8 @@ const readCategory = asyncHandler(async (req, res) => {
 const readAllCategories = asyncHandler(async (req, res) => {
   const categories = await Category.find();
 
-  res.status(200).json(categories);
+  // res.status(200).json(categories);
+  res.render('categories', { title: 'Categories', categories });
 });
 
 // @desc    Update category
