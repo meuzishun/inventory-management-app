@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% categories.forEach((category) => { %>
+    <a href="<%= category.url %>"><h2><%= category.name %></h2></a>
+    <p><%= category.description %></p>
+    <% }); %>
+  </body>
+</html>
