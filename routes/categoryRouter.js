@@ -13,7 +13,7 @@ const {
 router.route('/').get(readAllCategories);
 router.route('/new').get(categoryForm).post(createCategory);
 router.route('/:id').get(readCategory);
-router.route('/:id/edit').get(categoryForm).put(updateCategory);
+router.route('/:id/edit').get(categoryForm).post(updateCategory);
 router.route('/:id/remove').get(deleteCheck).delete(deleteCategory);
 
 module.exports = router;

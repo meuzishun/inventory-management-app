@@ -23,7 +23,8 @@ const categoryValidation = [
 const categoryForm = asyncHandler(async (req, res) => {
   if (req.params.id) {
     const category = await Category.findById(req.params.id);
-    res.status(200).json(category);
+    // res.status(200).json(category);
+    res.render('categoryForm', { category });
   } else {
     res.status(200).json({ title: 'create category' });
   }
@@ -63,7 +64,7 @@ const readCategory = asyncHandler(async (req, res) => {
   }
 
   // res.status(200).json(category);
-  res.render('category', { category });
+  res.status(200).render('category', { category });
 });
 
 // @desc    Get all categories
@@ -73,7 +74,7 @@ const readAllCategories = asyncHandler(async (req, res) => {
   const categories = await Category.find();
 
   // res.status(200).json(categories);
-  res.render('categories', { title: 'Categories', categories });
+  res.status(200).render('categories', { title: 'Categories', categories });
 });
 
 // @desc    Update category
@@ -103,7 +104,8 @@ const updateCategory = [
       { new: true }
     );
 
-    res.status(200).json(updatedCategory);
+    // res.status(200).json(updatedCategory);
+    res.status(200).render('category', { category: updatedCategory });
   }),
 ];
 
