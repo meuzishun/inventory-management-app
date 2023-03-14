@@ -33,6 +33,20 @@ const itemValidation = [
     .withMessage('Quantity cannot be negative.'),
 ];
 
+// @desc    Get item form
+// @route   GET /items/new
+// @route   GET /items/:id/edit
+// @access  Private
+const itemForm = asyncHandler(async (req, res) => {
+  if (req.params.id) {
+    const item = await Item.findById(req.params.id);
+    res.status(200).json(item);
+    // res.render('itemForm', { item });
+  } else {
+    res.status(200).json({ title: 'create item' });
+  }
+});
+
 // @desc    Create item
 // @route   POST /items
 // @access  Private
@@ -209,6 +223,16 @@ const updateItem = [
   }),
 ];
 
+// @desc    Get item delete
+// @route   GET /items/:id/remove
+// @access  Private
+const deleteCheck = asyncHandler(async (req, res) => {
+  if (req.params.id) {
+    const item = await Item.findById(req.params.id);
+    res.status(200).json(item);
+  }
+});
+
 // @desc    Delete category
 // @route   DELETE /items/:id
 // @access  Private
@@ -225,9 +249,11 @@ const deleteCategory = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  itemForm,
   createItem,
   readItem,
   readAllItems,
   updateItem,
+  deleteCheck,
   deleteCategory,
 };
