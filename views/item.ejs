@@ -1,0 +1,9 @@
+<a href="/categories">back to categories</a>
+<h1><%= item.name %></h1>
+<span><a href="/<%= item.url %>/edit">(edit)</a></span>
+<p><%= item.description %></p>
+<p>
+  Category: <a href="/<%= item.category.url %>"><%= item.category.name %></a>
+</p>
+<p>Price: <%= item.price %></p>
+<p>Quantity: <%= item.quantity %></p>

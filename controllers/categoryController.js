@@ -57,6 +57,7 @@ const createCategory = [
 // @access  Private
 const readCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
+  const items = await Item.find({ category: req.params.id });
 
   if (!category) {
     res.status(400);
@@ -64,7 +65,7 @@ const readCategory = asyncHandler(async (req, res) => {
   }
 
   // res.status(200).json(category);
-  res.status(200).render('category', { category });
+  res.status(200).render('category', { category, items });
 });
 
 // @desc    Get all categories
@@ -104,8 +105,10 @@ const updateCategory = [
       { new: true }
     );
 
+    const items = await Item.find({ category: req.params.id });
+
     // res.status(200).json(updatedCategory);
-    res.status(200).render('category', { category: updatedCategory });
+    res.status(200).render('category', { category: updatedCategory, items });
   }),
 ];
 

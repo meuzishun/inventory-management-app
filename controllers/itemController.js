@@ -26,9 +26,9 @@ const itemValidation = [
     .isCurrency()
     .withMessage('Please make sure price is a currency'),
   body('quantity')
-    .not()
-    .isDecimal()
-    .withMessage('Quantity must be an integer.')
+    // .not()
+    // .isDecimal()
+    // .withMessage('Quantity must be an integer.')
     .isInt({ min: 0 })
     .withMessage('Quantity cannot be negative.'),
 ];
@@ -39,9 +39,9 @@ const itemValidation = [
 // @access  Private
 const itemForm = asyncHandler(async (req, res) => {
   if (req.params.id) {
-    const item = await Item.findById(req.params.id);
-    res.status(200).json(item);
-    // res.render('itemForm', { item });
+    const item = await Item.findById(req.params.id).populate('category');
+    // res.status(200).json(item);
+    res.render('itemForm', { item });
   } else {
     res.status(200).json({ title: 'create item' });
   }
@@ -130,7 +130,9 @@ const readItem = asyncHandler(async (req, res) => {
     throw new Error('Item not found');
   }
 
-  res.status(200).json(item);
+  console.log(item);
+  // res.status(200).json(item);
+  res.status(200).render('item', { item });
 });
 
 // @desc    Get all items
@@ -205,21 +207,28 @@ const updateItem = [
 
     const categoryId = foundCategory._id.toString();
 
+    const priceNumber = Number(price);
+    const quantityNumber = Number(quantity);
+
     const updatedItem = await Item.findByIdAndUpdate(
       req.params.id,
       {
         name,
         description,
         category: categoryId,
+        // price: priceNumber,
         price,
+        // quantity: quantityNumber,
         quantity,
       },
       {
         new: true,
       }
-    );
+    ).populate('category');
 
-    res.status(200).json(updatedItem);
+    console.log(updatedItem);
+    // res.status(200).json(updatedItem);
+    res.status(200).render('item', { item: updatedItem });
   }),
 ];
 
