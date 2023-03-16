@@ -1,6 +1,7 @@
 <a href="/categories">back to categories</a>
 <h1><%= category.name %></h1>
 <span><a href="/<%= category.url %>/edit">(edit)</a></span>
+<span><a href="/<%= category.url %>/remove">(delete)</a></span>
 <p><%= category.description %></p>
 <ul>
   <% items.forEach((item) => { %>
