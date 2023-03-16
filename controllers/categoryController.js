@@ -23,15 +23,15 @@ const categoryValidation = [
 const categoryForm = asyncHandler(async (req, res) => {
   if (req.params.id) {
     const category = await Category.findById(req.params.id);
-    // res.status(200).json(category);
-    res.render('categoryForm', { category });
+
+    res.status(200).render('categoryForm', { category });
   } else {
-    res.status(200).json({ title: 'create category' });
+    res.status(200).render('categoryForm', { category: {} });
   }
 });
 
 // @desc    Create category
-// @route   POST /categories
+// @route   POST /categories/new
 // @access  Private
 const createCategory = [
   categoryValidation,
@@ -48,7 +48,9 @@ const createCategory = [
       description: req.body.description,
     });
 
-    res.status(200).json(category);
+    const items = await Item.find({ category: category._id });
+
+    res.status(200).render('category', { items, category });
   }),
 ];
 
@@ -64,7 +66,6 @@ const readCategory = asyncHandler(async (req, res) => {
     throw new Error('Category not found');
   }
 
-  // res.status(200).json(category);
   res.status(200).render('category', { category, items });
 });
 
@@ -74,12 +75,11 @@ const readCategory = asyncHandler(async (req, res) => {
 const readAllCategories = asyncHandler(async (req, res) => {
   const categories = await Category.find();
 
-  // res.status(200).json(categories);
   res.status(200).render('categories', { title: 'Categories', categories });
 });
 
 // @desc    Update category
-// @route   PUT /categories/:id
+// @route   POST /categories/:id/edit
 // @access  Private
 const updateCategory = [
   categoryValidation,
@@ -107,7 +107,6 @@ const updateCategory = [
 
     const items = await Item.find({ category: req.params.id });
 
-    // res.status(200).json(updatedCategory);
     res.status(200).render('category', { category: updatedCategory, items });
   }),
 ];
@@ -118,12 +117,13 @@ const updateCategory = [
 const deleteCheck = asyncHandler(async (req, res) => {
   if (req.params.id) {
     const category = await Category.findById(req.params.id);
-    res.status(200).json(category);
+
+    res.status(200).render('deleteCheck', { category });
   }
 });
 
 // @desc    Delete category
-// @route   DELETE /categories/:id/remove
+// @route   POST /categories/:id/remove
 // @access  Private
 const deleteCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
@@ -141,7 +141,8 @@ const deleteCategory = asyncHandler(async (req, res) => {
   }
 
   await category.deleteOne();
-  res.status(200).json({ id: req.params.id });
+
+  res.redirect('/categories');
 });
 
 module.exports = {
