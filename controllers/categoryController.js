@@ -118,7 +118,9 @@ const deleteCheck = asyncHandler(async (req, res) => {
   if (req.params.id) {
     const category = await Category.findById(req.params.id);
 
-    res.status(200).render('deleteCheck', { category });
+    const items = await Item.find({ category: req.params.id });
+
+    res.status(200).render('deleteCheck', { items, category });
   }
 });
 
