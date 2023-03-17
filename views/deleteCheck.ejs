@@ -1,5 +1,10 @@
+<% if (items.length > 0) { %>
+<p>Cannot delete a category that has items</p>
+<a href="/<%= category.url %>">Back</a>
+<% } else { %>
 <form action="/<%= category.url %>/remove" method="post">
   <p>Are you sure you want to delete the <%= category.name %> category?</p>
   <button type="submit">Yes</button>
   <a href="/<%= category.url %>"><p>No</p></a>
 </form>
+<% } %>
