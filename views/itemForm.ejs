@@ -1,7 +1,7 @@
-<form action="edit" method="post">
+<form action="<%= action %>" method="post">
   <div>
     <label for="name">Name</label>
-    <input type="text" id="name" name="name" value="<%= item.name %>" />
+    <input type="text" id="name" name="name" value="<%= item?.name || ''%>" />
   </div>
   <div>
     <label for="description">Description</label>
@@ -9,21 +9,25 @@
       type="text"
       id="description"
       name="description"
-      value="<%= item.description %>"
+      value="<%= item?.description || '' %>"
     />
   </div>
   <div>
     <label for="category">Category</label>
-    <input
-      type="text"
-      id="category"
-      name="category"
-      value="<%= item.category.name %>"
-    />
+    <select name="category" id="category">
+      <% categories.forEach((category) => { %>
+      <option value="<%= category.name %>" <%= category.name === item?.category?.name ? 'selected' : '' %>><%= category.name %></option>
+      <% }); %>
+    </select>
   </div>
   <div>
     <label for="price">Price</label>
-    <input type="text" id="price" name="price" value="<%= item.price %>" />
+    <input
+      type="text"
+      id="price"
+      name="price"
+      value="<%= item?.price || '' %>"
+    />
   </div>
   <div>
     <label for="quantity">Quantity</label>
@@ -31,9 +35,11 @@
       type="number"
       id="quantity"
       name="quantity"
-      value="<%= item.quantity %>"
+      value="<%= item?.quantity || '' %>"
     />
   </div>
   <button type="submit">Submit</button>
-  <a href="/<%= item.url %>"><button type="button">Cancel</button></a>
+  <a href="/<%= item?.url || 'items' %>"
+    ><button type="button">Cancel</button></a
+  >
 </form>
