@@ -38,12 +38,14 @@ const itemValidation = [
 // @route   GET /items/:id/edit
 // @access  Private
 const itemForm = asyncHandler(async (req, res) => {
+  const categories = await Category.find({});
   if (req.params.id) {
     const item = await Item.findById(req.params.id).populate('category');
     // res.status(200).json(item);
-    res.render('itemForm', { item });
+    res.status(200).render('itemForm', { action: 'edit', item, categories });
   } else {
-    res.status(200).json({ title: 'create item' });
+    // res.status(200).json({ title: 'create item' });
+    res.status(200).render('itemForm', { action: 'new', item: {}, categories });
   }
 });
 
@@ -130,7 +132,6 @@ const readItem = asyncHandler(async (req, res) => {
     throw new Error('Item not found');
   }
 
-  console.log(item);
   // res.status(200).json(item);
   res.status(200).render('item', { item });
 });
