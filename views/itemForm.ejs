@@ -39,7 +39,5 @@
     />
   </div>
   <button type="submit">Submit</button>
-  <a href="/<%= item?.url || 'items' %>"
-    ><button type="button">Cancel</button></a
-  >
+  <a href="<%= item?.url ? '/' + item.url : 'javascript:history.back()' %>">Cancel</a>
 </form>
