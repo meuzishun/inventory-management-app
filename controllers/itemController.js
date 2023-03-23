@@ -26,9 +26,6 @@ const itemValidation = [
     .isCurrency()
     .withMessage('Please make sure price is a currency'),
   body('quantity')
-    // .not()
-    // .isDecimal()
-    // .withMessage('Quantity must be an integer.')
     .isInt({ min: 0 })
     .withMessage('Quantity cannot be negative.'),
 ];
@@ -39,12 +36,11 @@ const itemValidation = [
 // @access  Private
 const itemForm = asyncHandler(async (req, res) => {
   const categories = await Category.find({});
+
   if (req.params.id) {
     const item = await Item.findById(req.params.id).populate('category');
-    // res.status(200).json(item);
     res.status(200).render('itemForm', { action: 'edit', item, categories });
   } else {
-    // res.status(200).json({ title: 'create item' });
     res.status(200).render('itemForm', { action: 'new', item: {}, categories });
   }
 });
@@ -63,31 +59,6 @@ const createItem = [
     }
 
     const { name, description, category, price, quantity } = req.body;
-
-    // if (!name) {
-    //   res.status(400);
-    //   throw new Error('Please include a name');
-    // }
-
-    // if (!description) {
-    //   res.status(400);
-    //   throw new Error('Please include a description');
-    // }
-
-    // if (!category) {
-    //   res.status(400);
-    //   throw new Error('Please include a category');
-    // }
-
-    // if (!price) {
-    //   res.status(400);
-    //   throw new Error('Please include a price');
-    // }
-
-    // if (!quantity) {
-    //   res.status(400);
-    //   throw new Error('Please include a quantity');
-    // }
 
     //* Use this if category is id
     // const item = await Item.create({
@@ -117,7 +88,7 @@ const createItem = [
       quantity,
     });
 
-    res.status(200).json(item);
+    res.status(200).render('item', { item });
   }),
 ];
 
@@ -132,7 +103,6 @@ const readItem = asyncHandler(async (req, res) => {
     throw new Error('Item not found');
   }
 
-  // res.status(200).json(item);
   res.status(200).render('item', { item });
 });
 
@@ -141,7 +111,6 @@ const readItem = asyncHandler(async (req, res) => {
 // @access  Private
 const readAllItems = asyncHandler(async (req, res) => {
   const items = await Item.find().populate('category');
-
   res.status(200).json(items);
 });
 
@@ -160,37 +129,6 @@ const updateItem = [
 
     const { name, description, category, price, quantity } = req.body;
 
-    // if (!name) {
-    //   res.status(400);
-    //   throw new Error('Please include a name');
-    // }
-
-    // if (!description) {
-    //   res.status(400);
-    //   throw new Error('Please include a description');
-    // }
-
-    // if (!category) {
-    //   res.status(400);
-    //   throw new Error('Please include a category');
-    // }
-
-    // if (!price) {
-    //   res.status(400);
-    //   throw new Error('Please include a price');
-    // }
-
-    // if (!quantity) {
-    //   res.status(400);
-    //   throw new Error('Please include a quantity');
-    // }
-    // const item = await Item.findById(req.params.id);
-
-    // if (!item) {
-    //   res.status(400);
-    //   throw new Error('Item not found');
-    // }
-
     //* Use this if category is id
 
     // const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
@@ -208,18 +146,13 @@ const updateItem = [
 
     const categoryId = foundCategory._id.toString();
 
-    const priceNumber = Number(price);
-    const quantityNumber = Number(quantity);
-
     const updatedItem = await Item.findByIdAndUpdate(
       req.params.id,
       {
         name,
         description,
         category: categoryId,
-        // price: priceNumber,
         price,
-        // quantity: quantityNumber,
         quantity,
       },
       {
@@ -227,8 +160,6 @@ const updateItem = [
       }
     ).populate('category');
 
-    console.log(updatedItem);
-    // res.status(200).json(updatedItem);
     res.status(200).render('item', { item: updatedItem });
   }),
 ];
@@ -239,15 +170,16 @@ const updateItem = [
 const deleteCheck = asyncHandler(async (req, res) => {
   if (req.params.id) {
     const item = await Item.findById(req.params.id);
-    res.status(200).json(item);
+    res.status(200).render('deleteItemCheck', { item });
   }
 });
 
-// @desc    Delete category
+// @desc    Delete item
 // @route   DELETE /items/:id
 // @access  Private
-const deleteCategory = asyncHandler(async (req, res) => {
+const deleteItem = asyncHandler(async (req, res) => {
   const item = await Item.findById(req.params.id);
+  const categoryId = item.category;
 
   if (!item) {
     res.status(400);
@@ -255,7 +187,7 @@ const deleteCategory = asyncHandler(async (req, res) => {
   }
 
   await item.deleteOne();
-  res.status(200).json({ id: req.params.id });
+  res.status(200).redirect(`/categories/${categoryId}`);
 });
 
 module.exports = {
@@ -265,5 +197,5 @@ module.exports = {
   readAllItems,
   updateItem,
   deleteCheck,
-  deleteCategory,
+  deleteItem,
 };
