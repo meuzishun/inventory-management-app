@@ -120,7 +120,7 @@ const deleteCheck = asyncHandler(async (req, res) => {
 
     const items = await Item.find({ category: req.params.id });
 
-    res.status(200).render('deleteCheck', { items, category });
+    res.status(200).render('deleteCategoryCheck', { items, category });
   }
 });
 
