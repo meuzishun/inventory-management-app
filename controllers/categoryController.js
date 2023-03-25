@@ -23,7 +23,6 @@ const categoryValidation = [
 const categoryForm = asyncHandler(async (req, res) => {
   if (req.params.id) {
     const category = await Category.findById(req.params.id);
-
     res.status(200).render('categoryForm', { category });
   } else {
     res.status(200).render('categoryForm', { category: {} });
@@ -49,7 +48,6 @@ const createCategory = [
     });
 
     const items = await Item.find({ category: category._id });
-
     res.status(200).render('category', { items, category });
   }),
 ];
@@ -74,7 +72,6 @@ const readCategory = asyncHandler(async (req, res) => {
 // @access  Private
 const readAllCategories = asyncHandler(async (req, res) => {
   const categories = await Category.find();
-
   res.status(200).render('categories', { title: 'Categories', categories });
 });
 
@@ -106,7 +103,6 @@ const updateCategory = [
     );
 
     const items = await Item.find({ category: req.params.id });
-
     res.status(200).render('category', { category: updatedCategory, items });
   }),
 ];
@@ -117,9 +113,7 @@ const updateCategory = [
 const deleteCheck = asyncHandler(async (req, res) => {
   if (req.params.id) {
     const category = await Category.findById(req.params.id);
-
     const items = await Item.find({ category: req.params.id });
-
     res.status(200).render('deleteCategoryCheck', { items, category });
   }
 });
@@ -143,7 +137,6 @@ const deleteCategory = asyncHandler(async (req, res) => {
   }
 
   await category.deleteOne();
-
   res.redirect('/categories');
 });
 
