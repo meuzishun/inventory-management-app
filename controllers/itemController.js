@@ -27,7 +27,7 @@ const itemValidation = [
     .withMessage('Please make sure price is a currency'),
   body('quantity')
     .isInt({ min: 0 })
-    .withMessage('Quantity cannot be negative.'),
+    .withMessage('Please include a non-negative quantity.'),
 ];
 
 // @desc    Get item form
@@ -51,39 +51,44 @@ const itemForm = asyncHandler(async (req, res) => {
 const createItem = [
   itemValidation,
   asyncHandler(async (req, res) => {
-    const errors = validationResult(req);
+    const errs = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      res.status(500).json(errors);
+    if (!errs.isEmpty()) {
+      const { errors } = errs;
+      console.log(errors);
+      res.status(200).render('itemError', { errors });
       return;
     }
 
-    const { name, description, category, price, quantity } = req.body;
-
     //* Use this if category is id
-    // const item = await Item.create({
-    //   name,
-    //   description,
-    //   category,
-    //   price,
-    //   quantity,
-    // });
+    //* ===================================
+    // const { name, description, category, price, quantity } = req.body;
+    //* ===================================
 
     //* Use this if category is text
+    //* ===================================
+    const {
+      name,
+      description,
+      category: categoryText, //! NOPE
+      price,
+      quantity,
+    } = req.body;
 
-    const foundCategory = await Category.findOne({ name: category });
+    const foundCategory = await Category.findOne({ name: categoryText });
 
     if (!foundCategory) {
       res.status(400);
       throw new Error('Not a pre-existing category');
     }
 
-    const categoryId = foundCategory._id.toString();
+    const category = foundCategory._id.toString();
+    //* ===================================
 
     const item = await Item.create({
       name,
       description,
-      category: categoryId,
+      category,
       price,
       quantity,
     });
