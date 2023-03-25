@@ -51,12 +51,10 @@ const itemForm = asyncHandler(async (req, res) => {
 const createItem = [
   itemValidation,
   asyncHandler(async (req, res) => {
-    const errs = validationResult(req);
+    const errors = validationResult(req);
 
-    if (!errs.isEmpty()) {
-      const { errors } = errs;
-      console.log(errors);
-      res.status(200).render('itemError', { errors });
+    if (!errors.isEmpty()) {
+      res.status(200).render('itemError', { errors: errors.errors });
       return;
     }
 
@@ -70,7 +68,7 @@ const createItem = [
     const {
       name,
       description,
-      category: categoryText, //! NOPE
+      category: categoryText,
       price,
       quantity,
     } = req.body;
@@ -132,31 +130,37 @@ const updateItem = [
       return;
     }
 
-    const { name, description, category, price, quantity } = req.body;
-
     //* Use this if category is id
-
-    // const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
-    //   new: true,
-    // });
+    //* ===================================
+    // const { name, description, category, price, quantity } = req.body;
+    //* ===================================
 
     //* Use this if category is text
+    //* ===================================
+    const {
+      name,
+      description,
+      category: categoryText,
+      price,
+      quantity,
+    } = req.body;
 
-    const foundCategory = await Category.findOne({ name: category });
+    const foundCategory = await Category.findOne({ name: categoryText });
 
     if (!foundCategory) {
       res.status(400);
       throw new Error('Not a pre-existing category');
     }
 
-    const categoryId = foundCategory._id.toString();
+    const category = foundCategory._id.toString();
+    //* ===================================
 
     const updatedItem = await Item.findByIdAndUpdate(
       req.params.id,
       {
         name,
         description,
-        category: categoryId,
+        category,
         price,
         quantity,
       },
