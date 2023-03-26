@@ -30,19 +30,12 @@ const itemValidation = [
     .withMessage('Please include a non-negative quantity.'),
 ];
 
-// @desc    Get item form
+// @desc    Get new item form
 // @route   GET /items/new
-// @route   GET /items/:id/edit
 // @access  Private
-const itemForm = asyncHandler(async (req, res) => {
+const newItemForm = asyncHandler(async (req, res) => {
   const categories = await Category.find({});
-
-  if (req.params.id) {
-    const item = await Item.findById(req.params.id).populate('category');
-    res.status(200).render('itemForm', { action: 'edit', item, categories });
-  } else {
-    res.status(200).render('itemForm', { action: 'new', item: {}, categories });
-  }
+  res.status(200).render('newItemForm', { categories });
 });
 
 // @desc    Create item
@@ -117,8 +110,20 @@ const readAllItems = asyncHandler(async (req, res) => {
   res.status(200).json(items);
 });
 
+// @desc    Get edit item form
+// @route   GET /items/:id/edit
+// @access  Private
+const editItemForm = asyncHandler(async (req, res) => {
+  const categories = await Category.find({});
+
+  if (req.params.id) {
+    const item = await Item.findById(req.params.id).populate('category');
+    res.status(200).render('editItemForm', { item, categories });
+  }
+});
+
 // @desc    Update item
-// @route   PUT /items/:id
+// @route   POST /items/:id
 // @access  Private
 const updateItem = [
   itemValidation,
@@ -200,10 +205,11 @@ const deleteItem = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-  itemForm,
+  newItemForm,
   createItem,
   readItem,
   readAllItems,
+  editItemForm,
   updateItem,
   deleteCheck,
   deleteItem,

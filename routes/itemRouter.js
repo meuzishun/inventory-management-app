@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const {
-  itemForm,
+  newItemForm,
   createItem,
   readItem,
   readAllItems,
+  editItemForm,
   updateItem,
   deleteCheck,
   deleteCategory,
@@ -12,9 +13,9 @@ const {
 } = require('../controllers/itemController');
 
 router.route('/').get(readAllItems);
-router.route('/new').get(itemForm).post(createItem);
+router.route('/new').get(newItemForm).post(createItem);
 router.route('/:id').get(readItem);
-router.route('/:id/edit').get(itemForm).post(updateItem);
+router.route('/:id/edit').get(editItemForm).post(updateItem);
 router.route('/:id/remove').get(deleteCheck).post(deleteItem);
 
 module.exports = router;
