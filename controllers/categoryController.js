@@ -16,17 +16,11 @@ const categoryValidation = [
     .withMessage('Please include a description.'),
 ];
 
-// @desc    Get category form
+// @desc    Get new category form
 // @route   GET /categories/new
-// @route   GET /categories/:id/edit
 // @access  Private
-const categoryForm = asyncHandler(async (req, res) => {
-  if (req.params.id) {
-    const category = await Category.findById(req.params.id);
-    res.status(200).render('categoryForm', { category });
-  } else {
-    res.status(200).render('categoryForm', { category: {} });
-  }
+const newCategoryForm = asyncHandler(async (req, res) => {
+  res.status(200).render('newCategoryForm');
 });
 
 // @desc    Create category
@@ -73,6 +67,22 @@ const readCategory = asyncHandler(async (req, res) => {
 const readAllCategories = asyncHandler(async (req, res) => {
   const categories = await Category.find();
   res.status(200).render('categories', { title: 'Categories', categories });
+});
+
+// @desc    Get edit category form
+// @route   GET /categories/:id/edit
+// @access  Private
+const editCategoryForm = asyncHandler(async (req, res) => {
+  if (req.params.id) {
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+      res.status(400);
+      throw new Error('Category not found');
+    }
+
+    res.status(200).render('editCategoryForm', { category });
+  }
 });
 
 // @desc    Update category
@@ -141,10 +151,11 @@ const deleteCategory = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-  categoryForm,
+  newCategoryForm,
   createCategory,
   readCategory,
   readAllCategories,
+  editCategoryForm,
   updateCategory,
   deleteCheck,
   deleteCategory,
