@@ -38,7 +38,7 @@ const createCategory = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.status(500).json(errors);
+      res.status(200).render('categoryError', { errors: errors.errors });
       return;
     }
 
@@ -84,7 +84,7 @@ const updateCategory = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.status(500).json(errors);
+      res.status(200).render('categoryError', { errors: errors.errors });
       return;
     }
 
