@@ -1,13 +1,19 @@
-<a href="/categories">back to categories</a>
-<h1><%= category.name %></h1>
-<span><a href="/<%= category.url %>/edit">(edit)</a></span>
-<span><a href="/<%= category.url %>/remove">(delete)</a></span>
-<p><%= category.description %></p>
-<ul>
-  <% items.forEach((item) => { %>
-  <li>
-    <a href="/<%= item.url %>"> <%= item.name %> </a>
-  </li>
-  <% }); %>
-  <li><a href="/items/new">add item</a></li>
-</ul>
+<div class="category-component">
+  <a class="back-link" href="/categories">back to categories</a>
+  <header class="category-header">
+    <h2 class="title"><%= category.name %></h2>
+    <div class="edit-buttons">
+      <a href="/<%= category.url %>/edit">edit</a>
+      <a href="/<%= category.url %>/remove">delete</a>
+    </div>
+  </header>
+  <p><%= category.description %></p>
+  <ul class="items-container">
+    <% items.forEach((item) => { %>
+    <li>
+      <a href="/<%= item.url %>" class="item"> <h3><%= item.name %></h3> </a>
+    </li>
+    <% }); %>
+  </ul>
+  <div class="button-container"><a href="/items/new">+ add item</a></div>
+</div>

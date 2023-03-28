@@ -1,9 +1,10 @@
-<form action="edit" method="post">
-  <div>
+<form class="category-form" action="edit" method="post">
+  <h2>Edit category</h2>
+  <div class="form-input-container">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" value="<%= category.name %>" />
   </div>
-  <div>
+  <div class="form-input-container">
     <label for="description">Description</label>
     <input
       type="text"
@@ -12,6 +13,8 @@
       value="<%= category.description %>"
     />
   </div>
-  <button type="submit">Submit</button>
-  <a href="/<%= category.url %>">Cancel</a>
+  <div class="button-container">
+    <button type="submit">Submit</button>
+    <a href="/<%= category.url %>">Cancel</a>
+  </div>
 </form>

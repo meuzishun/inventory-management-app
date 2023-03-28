@@ -1,9 +1,9 @@
-<form action="edit" method="post">
-  <div>
+<form class="item-form" action="edit" method="post">
+  <div class="form-input-container">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" value="<%= item?.name %>" />
   </div>
-  <div>
+  <div class="form-input-container">
     <label for="description">Description</label>
     <input
       type="text"
@@ -12,7 +12,7 @@
       value="<%= item?.description %>"
     />
   </div>
-  <div>
+  <div class="form-input-container">
     <label for="category">Category</label>
     <select name="category" id="category">
       <% categories.forEach((category) => { %>
@@ -20,7 +20,7 @@
       <% }); %>
     </select>
   </div>
-  <div>
+  <div class="form-input-container">
     <label for="price">Price</label>
     <input
       type="text"
@@ -29,7 +29,7 @@
       value="<%= item?.price %>"
     />
   </div>
-  <div>
+  <div class="form-input-container">
     <label for="quantity">Quantity</label>
     <input
       type="number"
@@ -38,6 +38,8 @@
       value="<%= item?.quantity %>"
     />
   </div>
-  <button type="submit">Submit</button>
-  <a href="<%= item?.url ? '/' + item.url : 'javascript:history.back()' %>">Cancel</a>
+  <div class="button-container">
+    <button type="submit">Submit</button>
+    <a href="<%= item?.url ? '/' + item.url : 'javascript:history.back()' %>">Cancel</a>
+  </div>
 </form>

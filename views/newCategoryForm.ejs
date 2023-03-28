@@ -1,12 +1,15 @@
-<form action="new" method="post">
-  <div>
+<form class="category-form" action="new" method="post">
+  <h2 class="title">Create new category</h2>
+  <div class="form-input-container">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" />
   </div>
-  <div>
+  <div class="form-input-container">
     <label for="description">Description</label>
     <input type="text" id="description" name="description" />
   </div>
-  <button type="submit">Submit</button>
-  <a href="/categories">Cancel</a>
+  <div class="button-container">
+    <button type="submit">Submit</button>
+    <a href="/categories">Cancel</a>
+  </div>
 </form>
