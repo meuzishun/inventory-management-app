@@ -1,3 +1,10 @@
+@use './abstracts' as *;
+@use './base' as *;
+@use './components' as *;
+@use './layouts' as *;
+@use './pages' as *;
+@use './utilities' as *;
+
 :root {
   --very-light-blue-color: #7dd0fc;
   --light-blue-color: #22b2ff;
@@ -22,7 +29,7 @@ li {
 
 body {
   /* padding: 50px 200px; */
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
   color: #ffffff;
   background-color: var(--dark-grey-color);
 }
@@ -100,7 +107,7 @@ a:hover {
 .home-image {
   flex: 1;
   background-color: #0000004b;
-  background-image: url("/images/guillaume-bolduc-uBe2mknURG4-unsplash.jpg");
+  background-image: url('/images/guillaume-bolduc-uBe2mknURG4-unsplash.jpg');
   background-blend-mode: darken;
   background-position: center;
   background-size: cover;
@@ -109,6 +116,7 @@ a:hover {
 
 /* .page-content {
 } */
+
 .home-header * {
   padding: 1.5rem;
   text-align: center;
@@ -232,5 +240,3 @@ a:hover {
 .button-container > a:hover {
   background-color: var(--light-green-color);
 }
-
-/*# sourceMappingURL=style.css.map */

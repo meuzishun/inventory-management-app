@@ -1,5 +1,11 @@
 <div class="categories-component">
-  <h2 class="title"><%= title %></h2>
+  <div class="categories-header">
+    <h2 class="title"><%= title %></h2>
+    <a href="categories/new">
+      <p>+ add category</p>
+    </a>
+  </div>
+
   <div class="categories-container">
     <% categories.forEach((category) => { %>
     <div class="single-category-container">
@@ -7,10 +13,5 @@
       <p><%= category.description %></p>
     </div>
     <% }); %>
-  </div>
-  <div class="button-container">
-    <a href="categories/new">
-      <p>+ add category</p>
-    </a>
   </div>
 </div>

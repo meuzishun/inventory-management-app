@@ -6,6 +6,7 @@
       <a href="/<%= category.url %>/edit">edit</a>
       <a href="/<%= category.url %>/remove">delete</a>
     </div>
+    <a href="/items/new">+ add item</a>
   </header>
   <p><%= category.description %></p>
   <ul class="items-container">
@@ -15,5 +16,5 @@
     </li>
     <% }); %>
   </ul>
-  <div class="button-container"><a href="/items/new">+ add item</a></div>
+  <div class="button-container"></div>
 </div>

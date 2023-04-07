@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "watch-sass": "sass --watch public/stylesheets/scss/style.scss public/stylesheets/style.css",
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=inventory-management-app:* npm run devstart"
