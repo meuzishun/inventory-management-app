@@ -165,7 +165,26 @@ a:hover {
   align-content: stretch;
   justify-content: stretch;
   gap: 1rem;
+  border-radius: 0.5rem;
   background-color: #293241;
+  padding: 1rem;
+}
+.item-page .item-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 0.25rem;
+}
+.item-page .sub-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.item-page .details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 1rem;
 }
 
 .form {
