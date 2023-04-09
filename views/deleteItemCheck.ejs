@@ -1,7 +1,7 @@
-<form class="item-form" action="/<%= item.url %>/remove" method="post">
+<form class="form item-form" action="/<%= item.url %>/remove" method="post">
   <p>Are you sure you want to delete the <%= item.name %> item?</p>
   <div class="button-container">
-    <button type="submit">Yes</button>
+    <button class="remove" type="submit">Yes</button>
     <a href="/<%= item.url %>">No</a>
   </div>
 </form>

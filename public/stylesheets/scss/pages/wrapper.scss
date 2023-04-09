@@ -10,3 +10,9 @@
     margin: 2rem;
   }
 }
+
+@media (max-width: 800px) {
+  .page-wrapper {
+    margin: 10px auto;
+  }
+}

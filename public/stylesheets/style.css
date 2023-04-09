@@ -77,6 +77,11 @@ a:hover {
   margin: 2rem;
 }
 
+@media (max-width: 800px) {
+  .page-wrapper {
+    margin: 10px auto;
+  }
+}
 .home-page {
   display: flex;
   flex-direction: row;
@@ -290,6 +295,12 @@ option {
   align-content: flex-start;
   justify-content: stretch;
   gap: 1rem;
+}
+
+.delete-check-page {
+  background-color: #293241;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .button-container {

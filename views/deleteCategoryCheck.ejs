@@ -3,7 +3,7 @@
   <p>Cannot delete a category that has items</p>
   <div class="button-container">
     <a href="/<%= category.url %>">Back to <%= category.name %></a>
-    <a href="/categories">Back to categories</a>
+    <a href="/categories">Back to Categories</a>
   </div>
 </div>
 <% } else { %>
@@ -14,7 +14,7 @@
 >
   <p>Are you sure you want to delete the <%= category.name %> category?</p>
   <div class="button-container">
-    <button type="submit">Yes</button>
+    <button class="remove" type="submit">Yes</button>
     <a href="/<%= category.url %>"><p>No</p></a>
   </div>
 </form>
