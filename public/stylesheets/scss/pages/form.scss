@@ -1,0 +1,11 @@
+@use '../layouts' as *;
+@use '../abstracts' as *;
+
+.form {
+  @include flex-column(stretch, stretch, 1rem);
+  background-color: $container-bg;
+
+  .form-input-container {
+    @include flex-column(flex-start, stretch, 0.25rem);
+  }
+}

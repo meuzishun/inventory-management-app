@@ -1,11 +1,17 @@
 <% if (items.length > 0) { %>
-<p>Cannot delete a category that has items</p>
-<div class="button-container">
-  <a href="/<%= category.url %>">Back to <%= category.name %></a>
-  <a href="/categories">Back to categories</a>
+<div class="delete-check-page">
+  <p>Cannot delete a category that has items</p>
+  <div class="button-container">
+    <a href="/<%= category.url %>">Back to <%= category.name %></a>
+    <a href="/categories">Back to categories</a>
+  </div>
 </div>
 <% } else { %>
-<form class="category-form" action="/<%= category.url %>/remove" method="post">
+<form
+  class="form category-form"
+  action="/<%= category.url %>/remove"
+  method="post"
+>
   <p>Are you sure you want to delete the <%= category.name %> category?</p>
   <div class="button-container">
     <button type="submit">Yes</button>

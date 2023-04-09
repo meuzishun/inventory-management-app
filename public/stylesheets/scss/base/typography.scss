@@ -24,3 +24,12 @@ button,
 option {
   font-size: 1.25rem;
 }
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    // text-decoration: underline;
+    text-decoration: none;
+  }
+}

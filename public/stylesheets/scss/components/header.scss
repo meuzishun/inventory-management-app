@@ -1,0 +1,6 @@
+@use '../layouts' as *;
+
+.header {
+  @include flex-row(stretch, space-between, 1rem);
+  align-items: baseline;
+}

@@ -1,0 +1,28 @@
+@use '../abstracts' as *;
+
+.home-page {
+  display: flex;
+
+  .home-header {
+    /* margin-bottom: 1.5rem; */
+    // background-color: #000;
+    background-color: $container-bg;
+    box-shadow: #00000076 0 0.25rem 0.5rem;
+    flex: 1;
+
+    * {
+      padding: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  .home-image {
+    flex: 1;
+    background-color: #0000004b;
+    background-image: url('/images/guillaume-bolduc-uBe2mknURG4-unsplash.jpg');
+    background-blend-mode: darken;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

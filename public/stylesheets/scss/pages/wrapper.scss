@@ -1,0 +1,15 @@
+@use '../abstracts' as *;
+
+.page-wrapper {
+  margin: 50px auto;
+  /* padding: 2rem; */
+  // background-color: $medium-brown-color;
+  // background-color: $coolers1-med-blue;
+  border-radius: 1rem;
+  overflow: hidden;
+  max-width: 1100px;
+
+  > * {
+    margin: 2rem;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="items-page">
+  <div class="items-header">
+    <h2 class="title"><%= title %></h2>
+    <a href="items/new">
+      <p>+ add category</p>
+    </a>
+  </div>
+  <div class="items-container">
+    <% items.forEach((item) => { %>
+    <div class="single-item-container">
+      <a href="/<%= item.url %>"><h3><%= item.name %></h3></a>
+      <p><%= item.description %></p>
+    </div>
+    <% }); %>
+  </div>
+</div>

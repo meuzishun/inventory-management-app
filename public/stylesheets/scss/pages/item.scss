@@ -1,0 +1,7 @@
+@use '../layouts' as *;
+@use '../abstracts' as *;
+
+.item-page {
+  @include flex-column(stretch, stretch, 1rem);
+  background-color: $container-bg;
+}
