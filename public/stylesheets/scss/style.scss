@@ -9,6 +9,9 @@ body {
   font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
   color: $white-color;
   background-color: $page-bg;
+}
+
+a {
   color: $link-color;
   border-bottom: 1px solid #00000000;
   transition: all 125ms ease-in-out;

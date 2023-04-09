@@ -86,10 +86,10 @@ a:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  box-shadow: #00000076 0 0.25rem 0.5rem;
 }
 .home-page .home-header {
   background-color: #293241;
-  box-shadow: #00000076 0 0.25rem 0.5rem;
   flex: 1;
 }
 .home-page .home-header * {
@@ -245,11 +245,14 @@ body {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #ffffff;
   background-color: #3d5a80;
+}
+
+a {
   color: #fff;
   border-bottom: 1px solid #00000000;
   transition: all 125ms ease-in-out;
 }
-body:hover {
+a:hover {
   color: #e0fbfc;
   border-bottom: 1px solid #e0fbfc;
 }
