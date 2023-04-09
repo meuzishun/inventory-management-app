@@ -3,4 +3,6 @@
 .header {
   @include flex-row(stretch, space-between, 1rem);
   align-items: baseline;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 0.25rem;
 }

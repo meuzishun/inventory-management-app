@@ -1,10 +1,11 @@
 <div class="categories-page">
   <header class="header categories-header">
     <h2 class="title"><%= title %></h2>
-    <a href="categories/new">
-      <p>+ add category</p>
-    </a>
   </header>
+  <div class="sub-header">
+    <div></div>
+    <a href="categories/new"><p>+ add category</p></a>
+  </div>
   <div class="categories-container">
     <% categories.forEach((category) => { %>
     <div class="single-category-container">

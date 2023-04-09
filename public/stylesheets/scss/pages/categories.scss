@@ -2,14 +2,7 @@
 @use '../abstracts' as *;
 
 .categories-page {
-  @include flex-column(stretch, stretch, 1.5rem);
-
-  .categories-header {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 0.25rem;
-  }
+  @include flex-column(stretch, stretch, 1rem);
 
   .categories-container {
     display: grid;

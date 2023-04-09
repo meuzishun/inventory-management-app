@@ -57,6 +57,14 @@ a:hover {
   justify-content: space-between;
   gap: 1rem;
   align-items: baseline;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 0.25rem;
+}
+
+.sub-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .page-wrapper {
@@ -106,13 +114,7 @@ a:hover {
   flex-direction: column;
   align-content: stretch;
   justify-content: stretch;
-  gap: 1.5rem;
-}
-.categories-page .categories-header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #fff;
-  padding-bottom: 0.25rem;
+  gap: 1rem;
 }
 .categories-page .categories-container {
   display: grid;
@@ -137,17 +139,6 @@ a:hover {
   align-content: stretch;
   justify-content: stretch;
   gap: 1rem;
-}
-.category-page .category-header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #fff;
-  padding-bottom: 0.25rem;
-}
-.category-page .sub-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 .category-page .items-container .items-list {
   display: grid;
@@ -175,17 +166,6 @@ a:hover {
   border-radius: 0.5rem;
   background-color: #293241;
   padding: 1rem;
-}
-.item-page .item-header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #fff;
-  padding-bottom: 0.25rem;
-}
-.item-page .sub-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 .item-page .details-container {
   display: flex;

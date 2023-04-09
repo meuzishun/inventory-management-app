@@ -4,19 +4,6 @@
 .category-page {
   @include flex-column(stretch, stretch, 1rem);
 
-  .category-header {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 0.25rem;
-  }
-
-  .sub-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .items-container {
     .items-list {
       display: grid;

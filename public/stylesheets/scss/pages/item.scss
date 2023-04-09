@@ -7,19 +7,6 @@
   background-color: $container-bg;
   padding: 1rem;
 
-  .item-header {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 0.25rem;
-  }
-
-  .sub-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .details-container {
     display: flex;
     flex-direction: column;
