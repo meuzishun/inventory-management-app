@@ -5,12 +5,21 @@
       <p>+ add category</p>
     </a>
   </div>
+  <div class="sub-header">
+    <p></p>
+    <a href="items/new">
+      <p>+ add category</p>
+    </a>
+  </div>
   <div class="items-container">
-    <% items.forEach((item) => { %>
-    <div class="single-item-container">
-      <a href="/<%= item.url %>"><h3><%= item.name %></h3></a>
-      <p><%= item.description %></p>
-    </div>
-    <% }); %>
+    <ul class="items-list">
+      <% items.forEach((item) => { %>
+      <li class="item">
+        <a href="/<%= item.url %>"> <h3><%= item.name %></h3> </a>
+        <p>Price: <%= item.price %></p>
+        <p>Quantity: <%= item.quantity %></p>
+      </li>
+      <% }); %>
+    </ul>
   </div>
 </div>
