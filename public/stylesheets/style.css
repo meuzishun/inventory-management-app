@@ -194,6 +194,8 @@ a:hover {
   justify-content: stretch;
   gap: 1rem;
   background-color: #293241;
+  padding: 2rem;
+  border-radius: 0.5rem;
 }
 .form .form-input-container {
   display: flex;
@@ -201,6 +203,11 @@ a:hover {
   align-content: flex-start;
   justify-content: stretch;
   gap: 0.25rem;
+}
+.form .form-input-container input:focus,
+.form .form-input-container select:focus {
+  background-color: #e0fbfc;
+  outline: none;
 }
 
 body {

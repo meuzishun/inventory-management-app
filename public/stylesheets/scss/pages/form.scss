@@ -4,8 +4,18 @@
 .form {
   @include flex-column(stretch, stretch, 1rem);
   background-color: $container-bg;
+  padding: 2rem;
+  border-radius: 0.5rem;
 
   .form-input-container {
     @include flex-column(flex-start, stretch, 0.25rem);
+
+    input,
+    select {
+      &:focus {
+        background-color: $input-highlight;
+        outline: none;
+      }
+    }
   }
 }
