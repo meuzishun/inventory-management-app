@@ -6,15 +6,9 @@
 @use './utilities' as *;
 
 body {
-  /* padding: 50px 200px; */
   font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
   color: $white-color;
-  // background-color: $dark-grey-color;
   background-color: $page-bg;
-}
-
-a {
-  // color: $very-light-blue-color;
   color: $link-color;
   border-bottom: 1px solid #00000000;
   transition: all 125ms ease-in-out;
@@ -33,9 +27,6 @@ option {
   border-radius: 0.25rem;
 }
 
-/* .page-content {
-} */
-
 .back-link {
   text-align: right;
   font-size: 1rem;
@@ -51,10 +42,6 @@ option {
   > * {
     margin: 0 0.5rem;
     font-size: 1rem;
-  }
-
-  > *:nth-child(1) {
-    // border-right: 0.1rem solid $white-color;
   }
 
   .remove {
@@ -84,18 +71,14 @@ option {
   button,
   a {
     padding: 0.5rem 1rem;
-    // background-color: $medium-green-color;
     background-color: $white-color;
-    // color: white;
     color: $coolers1-black;
     border: none;
     border-radius: 0.5rem;
-    // border-radius: 5000px;
     text-decoration: none;
     transition: background-color 150ms ease-in-out;
 
     &:hover {
-      // background-color: $light-green-color;
       background-color: $coolers1-pale-blue;
     }
   }

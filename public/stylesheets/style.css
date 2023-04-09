@@ -242,18 +242,14 @@ a:hover {
 }
 
 body {
-  /* padding: 50px 200px; */
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #ffffff;
   background-color: #3d5a80;
-}
-
-a {
   color: #fff;
   border-bottom: 1px solid #00000000;
   transition: all 125ms ease-in-out;
 }
-a:hover {
+body:hover {
   color: #e0fbfc;
   border-bottom: 1px solid #e0fbfc;
 }
@@ -266,8 +262,6 @@ option {
   border-radius: 0.25rem;
 }
 
-/* .page-content {
-} */
 .back-link {
   text-align: right;
   font-size: 1rem;
