@@ -107,7 +107,7 @@ const readItem = asyncHandler(async (req, res) => {
 // @access  Private
 const readAllItems = asyncHandler(async (req, res) => {
   const items = await Item.find().populate('category');
-  res.status(200).json(items);
+  res.status(200).render('items', { title: 'Items', items });
 });
 
 // @desc    Get edit item form

@@ -1,14 +1,11 @@
 <div class="items-page">
-  <div class="items-header">
+  <div class="header items-header">
     <h2 class="title"><%= title %></h2>
-    <a href="items/new">
-      <p>+ add category</p>
-    </a>
   </div>
   <div class="sub-header">
     <p></p>
     <a href="items/new">
-      <p>+ add category</p>
+      <p>+ add item</p>
     </a>
   </div>
   <div class="items-container">
@@ -16,7 +13,11 @@
       <% items.forEach((item) => { %>
       <li class="item">
         <a href="/<%= item.url %>"> <h3><%= item.name %></h3> </a>
-        <p>Price: <%= item.price %></p>
+        <p>
+          Category:
+          <a href="/<%= item.category.url %>"><%= item.category.name %></a>
+        </p>
+        <p>Price: $<%= item.price %></p>
         <p>Quantity: <%= item.quantity %></p>
       </li>
       <% }); %>
