@@ -56,6 +56,13 @@ option {
   > *:nth-child(1) {
     // border-right: 0.1rem solid $white-color;
   }
+
+  .remove {
+    &:hover {
+      color: $hover-warning;
+      border-color: $hover-warning;
+    }
+  }
 }
 
 .items-container {
@@ -71,16 +78,19 @@ option {
   button,
   a {
     padding: 0.5rem 1rem;
-    background-color: $medium-green-color;
-    color: white;
+    // background-color: $medium-green-color;
+    background-color: $white-color;
+    // color: white;
+    color: $coolers1-black;
     border: none;
-    /* border-radius: 0.5rem; */
-    border-radius: 5000px;
+    border-radius: 0.5rem;
+    // border-radius: 5000px;
     text-decoration: none;
     transition: background-color 150ms ease-in-out;
 
     &:hover {
-      background-color: $light-green-color;
+      // background-color: $light-green-color;
+      background-color: $coolers1-pale-blue;
     }
   }
 }

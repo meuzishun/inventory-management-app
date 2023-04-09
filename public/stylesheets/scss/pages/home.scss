@@ -2,6 +2,7 @@
 
 .home-page {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap; //! get this working
 
   .home-header {
@@ -19,11 +20,18 @@
 
   .home-image {
     flex: 1;
+    min-height: 300px;
     background-color: #0000004b;
     background-image: url('/images/guillaume-bolduc-uBe2mknURG4-unsplash.jpg');
     background-blend-mode: darken;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: 800px) {
+  .home-page {
+    flex-direction: column;
   }
 }

@@ -72,6 +72,7 @@ a:hover {
 
 .home-page {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 .home-page .home-header {
@@ -86,6 +87,7 @@ a:hover {
 }
 .home-page .home-image {
   flex: 1;
+  min-height: 300px;
   background-color: #0000004b;
   background-image: url("/images/guillaume-bolduc-uBe2mknURG4-unsplash.jpg");
   background-blend-mode: darken;
@@ -94,6 +96,11 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+@media (max-width: 800px) {
+  .home-page {
+    flex-direction: column;
+  }
+}
 .categories-page {
   display: flex;
   flex-direction: column;
@@ -209,6 +216,9 @@ a:hover {
   background-color: #e0fbfc;
   outline: none;
 }
+.form button[type=submit]:hover {
+  background-color: #ee6c4d;
+}
 
 body {
   /* padding: 50px 200px; */
@@ -253,6 +263,11 @@ option {
   margin: 0 0.5rem;
   font-size: 1rem;
 }
+.edit-buttons .remove:hover {
+  color: #ee6c4d;
+  border-color: #ee6c4d;
+}
+
 .items-container {
   display: flex;
   flex-direction: column;
@@ -270,17 +285,16 @@ option {
 .button-container button,
 .button-container a {
   padding: 0.5rem 1rem;
-  background-color: #129030;
-  color: white;
+  background-color: #ffffff;
+  color: #293241;
   border: none;
-  /* border-radius: 0.5rem; */
-  border-radius: 5000px;
+  border-radius: 0.5rem;
   text-decoration: none;
   transition: background-color 150ms ease-in-out;
 }
 .button-container button:hover,
 .button-container a:hover {
-  background-color: #50a548;
+  background-color: #e0fbfc;
 }
 
 /*# sourceMappingURL=style.css.map */

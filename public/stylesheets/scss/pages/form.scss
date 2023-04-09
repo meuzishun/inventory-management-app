@@ -18,4 +18,8 @@
       }
     }
   }
+
+  button[type='submit']:hover {
+    background-color: $coolers1-warning-orange;
+  }
 }
