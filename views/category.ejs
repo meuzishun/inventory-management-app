@@ -1,20 +1,26 @@
 <div class="category-page">
-  <a class="back-link" href="/categories">back to categories</a>
+  <!-- <a class="back-link" href="/categories">back to categories</a> -->
   <header class="header category-header">
     <h2 class="title"><%= category.name %></h2>
     <div class="edit-buttons">
-      <a href="/<%= category.url %>/edit">edit</a>
+      <a href="/<%= category.url %>/edit">edit</a>|
       <a href="/<%= category.url %>/remove">delete</a>
     </div>
-    <a href="/items/new">+ add item</a>
   </header>
-  <p><%= category.description %></p>
-  <ul class="items-container">
-    <% items.forEach((item) => { %>
-    <li>
-      <a href="/<%= item.url %>" class="item"> <h3><%= item.name %></h3> </a>
-    </li>
-    <% }); %>
-  </ul>
+  <div class="sub-header">
+    <p><%= category.description %></p>
+    <a href="/items/new">+ add item</a>
+  </div>
+  <div class="items-container">
+    <ul class="items-list">
+      <% items.forEach((item) => { %>
+      <li class="item">
+        <a href="/<%= item.url %>"> <h3><%= item.name %></h3> </a>
+        <p>Price: <%= item.price %></p>
+        <p>Quantity: <%= item.quantity %></p>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
   <div class="button-container"></div>
 </div>

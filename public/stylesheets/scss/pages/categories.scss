@@ -1,9 +1,8 @@
+@use '../layouts' as *;
 @use '../abstracts' as *;
 
 .categories-page {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  @include flex-column(stretch, stretch, 1.5rem);
 
   .categories-header {
     display: flex;

@@ -2,6 +2,7 @@
 
 .home-page {
   display: flex;
+  flex-wrap: wrap; //! get this working
 
   .home-header {
     /* margin-bottom: 1.5rem; */

@@ -72,6 +72,7 @@ a:hover {
 
 .home-page {
   display: flex;
+  flex-wrap: wrap;
 }
 .home-page .home-header {
   /* margin-bottom: 1.5rem; */
@@ -96,6 +97,8 @@ a:hover {
 .categories-page {
   display: flex;
   flex-direction: column;
+  align-content: stretch;
+  justify-content: stretch;
   gap: 1.5rem;
 }
 .categories-page .categories-header {
@@ -127,7 +130,33 @@ a:hover {
   align-content: stretch;
   justify-content: stretch;
   gap: 1rem;
+}
+.category-page .category-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 0.25rem;
+}
+.category-page .sub-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.category-page .items-container .items-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: max-content;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+.category-page .items-container .items-list .item {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 1rem;
+  border-radius: 0.5rem;
   background-color: #293241;
+  padding: 1rem;
 }
 
 .item-page {
@@ -195,13 +224,9 @@ option {
   display: flex;
 }
 .edit-buttons > * {
-  padding: 0 0.5rem;
+  margin: 0 0.5rem;
   font-size: 1rem;
 }
-.edit-buttons > *:nth-child(1) {
-  border-right: 0.15rem solid #7dd0fc;
-}
-
 .items-container {
   display: flex;
   flex-direction: column;
