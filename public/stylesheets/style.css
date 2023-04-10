@@ -17,11 +17,11 @@ h3 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: clamp(1.25rem, 3vw, 2rem);
 }
 
 h3 {
@@ -34,7 +34,7 @@ label,
 input,
 button,
 option {
-  font-size: 1.25rem;
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
 }
 
 a {
@@ -309,6 +309,7 @@ option {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  gap: 1rem;
 }
 .button-container button,
 .button-container a {
@@ -323,6 +324,12 @@ option {
 .button-container button:hover,
 .button-container a:hover {
   background-color: #e0fbfc;
+}
+
+@media (max-width: 800px) {
+  .button-container {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
