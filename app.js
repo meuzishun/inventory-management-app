@@ -11,6 +11,7 @@ const categoryRouter = require('./routes/categoryRouter');
 const itemRouter = require('./routes/itemRouter');
 const expressLayouts = require('express-ejs-layouts');
 const compression = require('compression');
+const helmet = require('helmet');
 
 async function main() {
   try {
@@ -31,6 +32,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(helmet());
 app.use(expressLayouts);
 
 app.use(logger('dev'));
