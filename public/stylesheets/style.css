@@ -127,6 +127,7 @@ a:hover {
   gap: 1rem;
 }
 .categories-page .categories-container .single-category-container {
+  box-shadow: #00000076 0 0.25rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -154,6 +155,7 @@ a:hover {
   gap: 1rem;
 }
 .items-page .items-list .item {
+  box-shadow: #00000076 0 0.25rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -185,6 +187,7 @@ a:hover {
   gap: 1rem;
 }
 .category-page .items-container .items-list .item {
+  box-shadow: #00000076 0 0.25rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -204,6 +207,7 @@ a:hover {
   align-content: stretch;
   justify-content: stretch;
   gap: 1rem;
+  box-shadow: #00000076 0 0.25rem 0.5rem;
   border-radius: 0.5rem;
   background-color: #293241;
   padding: 1rem;

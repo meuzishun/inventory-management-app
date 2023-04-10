@@ -3,6 +3,7 @@
 
 .item-page {
   @include flex-column(stretch, stretch, 1rem);
+  @include shadow;
   border-radius: 0.5rem;
   background-color: $container-bg;
   padding: 1rem;
